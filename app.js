@@ -5,7 +5,7 @@ var config = {
 };
 
 // var irc = require("irc");
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 import irc from 'irc';
 // const RssFeedEmitter = require('rss-feed-emitter');
 
