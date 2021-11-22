@@ -6,9 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "irc": "^0.5.2"
+    "irc": "^0.5.2",
+    "node-fetch": "^3.0.0"
   }
 }
