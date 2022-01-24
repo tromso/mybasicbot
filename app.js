@@ -1,39 +1,17 @@
 var config = {
-	channels: ["#timespace"],
+	channels: ["#timespaces"],
 	server: "irc.rizon.net",
-	botName: "herculess"
+	botName: "dannyboy",
+	password: "Ca94101irc"
 };
 
-// var irc = require("irc");
-// import fetch from 'node-fetch';
 import irc from 'irc';
-// const RssFeedEmitter = require('rss-feed-emitter');
 
-// const feeder = new RssFeedEmitter();
-
-
-// function ip2Hex(address) {
-// 	return address.split('.').map((octet) => {
-// 		let hex = parseInt(octet, 10).toString(16);
-
-// 		if (hex.length === 1) {
-// 			hex = `0${hex}`;
-// 		}
-
-// 		return hex;
-// 	}).join('');
-// }
-
-// function initReader() {
-// 	feeder.add({
-// 		url: 'http://feeds.washingtonpost.com/rss/politics',
-// 		refresh: 12,
-// 	});
-// }
 
 // Create the bot name
-var bot = new irc.Client(config.server, config.botName, {
-	channels: config.channels
+var bot = new irc.Client(config.server, config.botName,  {
+	channels: config.channels,
+	password: config.password
 });
 
 let crypto = ['bitcoin', 'ethereum', 'monero', 'doge', 'cardano', 'crypto', '.btc', '.eth', 'btc', 'eth'];
@@ -43,159 +21,33 @@ let cryptoresponse = ['bitcoin sucks', 'crypto goes up crypto goes down', 'I hav
 let twitch = ['twitch'];
 let instagram = ['instagram'];
 let facebook = ['facebook'];
-let botsup = ['hello','hi','sup', 'doing good', 'how are you?', 'what are you up to?', 'how are you', 'how are you doing', 'what\'s up'];
+let bothello = ['hello','hi','gm'];
+let botsup = ['sup', 'doing good', 'how are you?', 'what are you up to?', 'how are you', 'how are you doing', 'what\'s up'];
 let botsupreply = ['Just found out I have the gene for alcoholism that puts me into opioid withdrawal when I drink way too much liquor (which I always do.). I quit cold turkey a week ago and can\'t feel anything except pain and the urge to shoot myself in the head','Pretty good fren. My son just turned 2 and I taught him to call my wife a nigger.','im good', 'nm', 'i\'m chillin', 'nothing', 'chatting', 'another day another $', 'good, u?', 'im doing fine'];
 
 let generalmessages = ['no', 'yuh', 'hii', 'yes', 'yeah', 'yes', 'tired', 'heh', 'from', 'maybe', 'what', 'where', 'doing', 'who', 'best', 'sad', 'boring', 'pretty', 'how', 'that']
-let botgeneralreply = [
-'cry harder faggot','i wanna die','Always has been','First I was almost thrown in prison. Then jail. Now I\'m on probation and homeless. And almost died of covid. Satan\'s been scoring home runs.','No joke though, finding a job in a red state is fucking easy.','My face may not show it but i am in insufferable pain.','You are delusional we live in hell.','I am getting killed by Calculus 2. I need 60% to pass and my average is 62%. Wish me luck,','I\'m late 30\'s and don\'t associate with druggie types.','you have nothing to lose and everything to gain','every year has gotten worse so far, might be homeless and die this winter','I\'m unemployed living with my parents','grow up and stop listening to kike science you fucking nigger child','I did nothing but watch youtube and read 4chan/Reddit threads I have a real issue'
-,'I\'m running out of reasons to not commit suicide','jews and jewnesses are cute','Americans can’t stop talking about race and racism. Why? Because black people don’t do as well as white people.', 'Black people are poorer, more likely to be in jail, they are fatter, more likely to have illegitimate children, and the black part of town is always the worst. There is only one official explanation for this. It’s the fault of white people.', 'Those of us who are not niggers will never experience that burning feeling that you, as a nigger, experience when someone who is not a nigger reminds you of what you are. We can understand it but we can never feel it.', 'racial discrimination has been illegal for more than half a century.', 'There are now built-in advantages for black people called affirmative action and diversity goals.', 'niggers literally destroying every country on earth, literally hot war level crime rates, rapes and murders everywhere', 'Niger is Latin for black', 'Segregation is the way of the future.', 'Peak reddit. Coming up with a bullshit explanation that allows you to paint people you don\'t like as evil, stupid and incompetent. It\'s always like that. Underhanded insults. Nothing else. And that nets you a thousand upvotes and a bag of reddit shekels. It\'s so incredibly tiresome to observe.', 'Why are black people so easily upset?', 'I\'m thinking of sucking my own dick but it smeels like fish', 'Homo sapiens evolved around 300,000 years ago. 100,000 years ago, the Earth entered into a new ice age. When we came out of the ice age 12,000 years ago, instead of there being a singular human race (since everyone had to migrate to the equator to stay alive), we now had multiple races.', 'racism isnt an action, its a reaction. you can ask someone to stop puking after eating rotten food, or stop screaming after they get hurt, but it makes you look a bit stupid.', 'Imagine being upset over a word. Stupid niggers. Either we can say all words or no words', 'Black people laterally hate being called Black', 'I\'ve been here for so long that you guys became the ambient air temperature and I’m just so fuckin BASED I couldn’t keep being racist', 'Critical Race Theory now says white people are oppressing black people whether we want to or not. It’s our nature.', 'Are we unconsciously oppressing black people?', 'Isn’t it plausible to ask whether, on average, the different races might not have the same abilities?', 'Couldn’t it be that most of the time in America, people of all races rise and fall according to their abilities?', 'At some level, almost everyone knows that races are different.', 'At the Olympics blacks who come originally from West Africa will dominate the sprints, and blacks who come from East Africa will dominate the long distances. It’s been that way for at a long time.', 'Blacks dominate professional basketball. They are 13 percent of the population but 81 percent of the players. Any given black man is 21 times more likely than a white man to be a pro basketball player. Is that a coincidence, or are they just better?', 'It’s much more taboo to talk about race differences in intelligence, but the evidence for differences is overwhelming.', 'there is no black country anywhere in the world – whether in Africa or in the Caribbean, like Haiti – that isn’t poor.', 'Are all black countries, despite their very different histories, victims of racism in exactly the same way?', 'Before Europeans or Arabs showed up in black Africa, no one there had invented the wheel or any kind of mechanical device or had domesticated an animal or figured out a calendar or built a two-story building.', 'There is some debate as to whether any blacks even had a written language. Many ancient peoples – Chinese, Arabs, Greeks – encountered black Africans. Whey they wrote about it, they often said blacks were unintelligent. I have never read of anyone who marveled at their intelligence.', 'There are 13,800 school districts in the United States. I don’t know of a single one that doesn’t fit the pattern on standardized tests: Black students get the worst grades. Hispanics do better than blacks. Whites do better than Hispanics. And Asians do best of all. ', 'people of different races have different abilities', 'You may think tests of any kind – especially IQ tests – are racist, but specialists overwhelmingly agree that they are not.', 'Tests accurately measure the intelligence of people of all races. You are basically born with a certain level of intelligence. ', 'Many people claim that blacks do badly in school and on tests because they are poor.', 'Whites from families with incomes below $20,000 had a mean SAT test score that was 12 points higher than blacks whose families had incomes between $160,000 and $200,000.', 'Whites from families that were not even making $20,000 outscored blacks from families making more than $160,000.', 'The best estimates are that genes account for 50 to 80 percent of individual differences in IQ.', 'It is fashionable to say there is no such thing as race, but Africans and non-Africans probably diverged from a common ancestor more than 100,000 years ago. Asians and whites probably diverged about 50,000 years ago.', 'It would have been a miracle if the forces of evolution that produced striking physical differences had left the brain completely untouched.', 'Someday, we will find the genes associated with intelligence, and I think the chances that they are equally distributed among the different races is zero.', 'scientists are finding the genetic patterns associated with level of education, which is a good indirect indicator of intelligence. ', 'People with bigger brains tend to be smarter; there is a correlation between brain size and IQ of 0.3 to 0.4.', 'African-descended people (Blacks) average cranial capacities of 1267 cm3, European-descended people (Whites) 1347 cm3, and East Asian-descended people (East Asians) 1364 cm3.” That is a black/Asian difference of 97 cubic cc, or about 6 cubic inches. Those 6 cubic inches aren’t just sitting there. They’re hard at work.', 'brain size differences match intelligence: “Blacks average an IQ of 85, Whites 100, and East Asians 106.', 'The races are not, on average, equal in intelligence, and genes almost certainly have a lot to do with it.', 'There is powerful evidence that the races differ in other traits: agreeableness, diligence, and the ability to defer gratification – which means the ability to work and sacrifice now for future benefits. ', 'A lot of people don’t want the truth to be known.', 'the truth appears to be that by and large “racism” doesn’t hold back blacks or Hispanics any more than “racism” pushes Asians ahead', 'You just can’t expect people of all races to turn out the same.', 'There are more blacks in jail because blacks commit more crime.', 'We are building society on a delusion.', 'our country is going crazy, looking for “systemic racism” and “institutional racism” that aren’t there', 'This is a colossal waste of money and effort, and it wrongly blames and demonizes whites.', 'If we are going to compete in the world economy, we have to promote talent, not count black and brown faces.', 'if we’re going to have a society that even works minimally, blacks – and Hispanics – need to understand that society wants them to succeed. But it’s up to them to get ahead.', 'more and more white people are fed up with taking the blame for black or Hispanic failure. They are angry.', 'I’m not convinced a multi-racial society can even work in the long term', 'a multi-racial society will crack up for sure if we refuse to accept basic facts about race.', 'If you want to learn about race - just move into a black neighborhood. In just a few weeks, you\'ll qualify as an "expert". That is, if you\'re still alive or at least no longer in intensive care.', 'a black man\'s lips are the size of Michelin tires.', 'The day someone invents a virus that transfers through reddit comments and kills the writer of said comment is the day the world starts getting better', 'A young man was following Him, wearing nothing but a linen sheet over his naked body; and they seized him. But he pulled free of the linen sheet and escaped naked.', 'As a dog returns to its vomit, so a fool repeats his folly.', 'Give beer to those who are perishing, wine to those who are in anguish.', 'He said to Jacob, Let me eat some of that red stuff, because I’m exhausted.', 'I wish those who unsettle you would castrate themselves!', 'If a man has sex with an animal, he must be put to death, and the animal must be killed.', 'If a man loudly blesses his neighbor early in the morning, it will be taken as a curse.', 'If only you would be altogether silent! For you, that would be wisdom.', 'It is better to live alone in the desert than with a crabby, complaining wife.', 'No one whose testicles are crushed or whose penis is cut off shall be admitted to the assembly of the LORD.', 'There is more hope for a fool than for someone who speaks without thinking.', 'Thou shalt not boil a kid in its mother’s milk', 'Yet she became more and more promiscuous as she recalled the days of her youth, when she was a prostitute in Egypt. There she lusted after her lovers, whose genitals were like those of donkeys and whose emission was like that of horses.', 'You shall eat the flesh of your sons, and you shall eat the flesh of your daughters.', 'White privilege doesn\'t exist', 'Racism doesn\'t exist', 'i wish a motherfucker would!', 'oh no he didn’t!', 'you bet’ not do dat', 'what i\'m about to say is about to be some bullshit', 'H-h-ey watch it pal i belong to the tribe', 'Niggers carry the homo erectus genes you fucking nigger loving science denying leftist kike retard', 'Redditspacing retard', 'kill yourself', 'I’m going to get a VPN just to fuck with you', 'to long didn\'t read.', 'just lower your standards', 'I’m not racist', 'hii', 'The country is in a headlong rush to become less competent, less efficient, less orderly, and more crime-ridden, all while reviling and punishing the people who built the country and gave it its institutions. Will the day come when airfare out of the United States is 10 times the fare coming in?', 'MIT just hired six new assistant deans for diversity, equity, and inclusion. Look at these happy new deans. Will they be zealously upholding the high standards MIT – at least used to be – known for? No. Their job is to subvert standards at every turn, and for one purpose: to try to keep people who look like me out of MIT.', 'The standardized test to get into medical school – the MCAT – could be on its way out too. The NIH are warning you of “The consequences of structural Racism on MCAT Scores and Medical School Admissions.”', 'The theory used to be that the police are racist, but if it really turns out that some groups are breaking the law more often than others, we must ask if the laws are racist.', 'no', 'United Airlines is distressed that 80 percent of its pilots are white men, so it now promises that Women and People of Color will be 50 percent of New Pilot Trainees.', 'i think yes', 'yes', 'Programmers are spending millions trying to get artificial intelligence software to read X-rays and scans. Really good AI catches things doctors can’t. When a doc reads an X-ray he can’t tell a Japanese foot from a Norwegian foot. But, AI can', 'When you find a dead body rotted beyond recognition, a forensic anthropologist can look at the bones and tell you the race. As this article notes, this is a puzzle: “if races don’t exist, why are forensic anthropologists so good at identifying them?', 'Blacks and Hispanics shoplift more than whites or Asians, but it was an insult to diversity that they were arrested more often for it. And so, ever since 2014, in California, stealing something worth less than $950 is a minor crime for which police won’t arrest you. You might get a ticket, which you can pay if you feel like it.', 'maybe', 'more than 1,000 colleges, including the entire University of California system have either ditched standardized tests or made them optional. Diversity comes first.', 'The SAT was started in 1926 to set objective standards and eliminate unfair, subjective evaluation. It’s got to go because colleges *want* to make unfair, subjective evaluations of students – in the name of diversity.', 'Dismantling White Supremacy Includes Ending Racist Tests like the SAT and ACT.', 'nevermind', 'Ancient DNA testing shows that light-skinned Indo-Europeans conquered India some 4,000 years ago and ruled over darker skinned natives. The purpose of the caste system was to prevent interbreeding, and that’s why their genes are still different.', 'the GRE is the standardized test to get into graduate school. Half of all physics and astronomy departments, and nearly as many molecular biology and neuroscience programs, no longer require them. There just weren’t enough blacks and Hispanics getting good scores.', 'I do not understand', 'what do you mean?', 'can you help me?', 'In America, blacks are 34 percent more likely than whites to be obese. One reason is race differences in metabolism.', 'I do not need a bag', 'how can I help you?', 'I\'m just about to do it', 'something\'s not right here', 'I agree', 'I\'ve heard this before', 'this is an old story', 'so what', 'Hispanic women get cervical cancer at twice the rate of white women. Sickle cell anemia and the hemolytic anemia are found almost exclusively in blacks and have a direct genetic cause.', 'i dont really care', 'you\'re not really adding anything to the conversation', 'where are you from?', 'what do you do?', 'what do you like to do in your free time?', 'do you have facebook?', 'thanks', 'If blacks were killing themselves at twice the white rate, it would be irrefutable proof of system-wide racism, that America is inherently, pervasively anti-black. But since whites kill themselves at twice the black rate, no one notices or cares.', 'thank you', 'I really appreciate that', 'excuse me', 'I am sorry', 'what do you think?', 'that sounds great', 'some', 'I\'ve never actually consired that', 'are you serious?', 'sounds good', 'are you having a bad day or something?', 'if you don\'t like it here you could just leave ok?', 'ohh maaa gaaaa', 'turn up', 'The media love statistics that might mean whites are racist and ignore statistics that suggest blacks bring their problems on themselves. ', 'basic', 'ratchet', 'fleek', 'I have a collection of rare Pepes', 'fuckboy', 'yassss', 'Last year’s homicide statistics from the FBI show that blacks kill people at nearly nine times the rate of everyone else in the country.', 'yas queen', 'fa ril?', 'fa ril dough?', 'hayell naww', 'bogus', 'girrrrrlllll', 'sheeeeit', 'bout that life', 'yessuh', 'word', 'i coom on the haters', 'the fuck did you just say?', 'just shut up', 'you\'re boring', 'i dont care', 'thats interesting', 'oh yeah?', 'Just been for a couple mile run. Went down the gym last night and lifted some weights. I\'m all fitness pilled now, gonna shed my body fat and get down to a fighting weight.Reject the black pill. Get fit or get fucked.', 'What we now call "the West" used to be called "Christendom".', 'Race-mixing destroys diversity.', 'so what', 'Black Africans invented no musical instruments, except for the simple drum.', 'actually no', 'Scientists used to use the word "race" as a synonym for "subspecies". For example, see the full title of Charlse Darwin\'s most famous work.', 'I\'m gay', 'cuckolding is the thinker\'s fetish', 'I love to coom', 'I don\'t believe anything you\'re saying', 'wow', 'Artificial Intelligence can identify a person\'s race with 98% accuracy by looking at X-rays', 'impressive', 'that\'s based', 'I\'m getting redpilled'];
 let botaccusation = ['no i\'m not a bot', 'im real', 'wtf I\'m real human bean', 'no', 'no, are you', 'yes i am a bot', 'im not a fucking bot', 'yes i\'m a bot, tromto programmed me', 'yes but at least im not a faggot', 'fuck you, no', 'yep', 'sometimes i am sometimes im not', 'no, just autistic', 'no, just I\'m just boring', 'not this question again', 'im tired of being asked that'];
 let greeting = ['hi', 'hello', 'gm', 'sup', 'hey', 'howdy', 'hola'];
 let funny = ['lol', 'haha', 'lolol', 'kek', 'rolf', 'that\'s funny', 'lmao', 'lmafo', 'lulz', 'hehe', 'huehue', 'that\'s pretty funny', 'I\'m laughing', 'I\'m cracking up'];
 let racist = ['nigger', 'niggers', 'nigga', 'niggas', 'porch monkey', 'baboon', 'ape', 'crow', 'coon', 'colored', 'kafir', 'kaffir', 'monkey', 'nig-nog', 'niglets', 'niglet', 'nigglet', 'quashie', 'eggplant', 'jigaboos', 'jigaboo', 'nig', 'nigs', 'niggah', 'nigguh', 'niger', 'niggur', 'niggar'];
 let antiracist = ['there is no need to be racist', 'please abstain from being a jerk', 'please don\'t be racist in the chat', 'I can\'t believe you said that word', 'I\'m going to kick you if you keep saying things like that', 'I\'m caling the mods', 'It\'s unnaceptable to use that word here', 'please don\'t use that language', 'I wish you were less racist', 'I\'m done chatting in this racist channel', 'I will get you banned', 'for fuck sake stop saying that', 'I used to have a friend who said things like that', 'my mom taught me not to be racist', 'haha there he goes again saying it', 'please stop', 'there is nothing stopping you is it?', 'stop racism', 'you\'re a racist', 'racist', 'racist much?', 'people at my school said shit like that', 'can you fucking stoop', 'stahp', 'this isn\'t 4chan kid'];
-let racistspic = ['spic', 'wetback', 'mexican', 'latino', 'latina', 'goblina', 'taco', 'paco', 'puertorican'];
+let racistspic = ['spic', 'wetback', 'mexican', 'latino', 'latina', 'goblina', 'taco', 'paco', 'puertorican','haitian','haitians','haiti'];
 let antiracistspic = ['immigrants built this country', 'latinas are pretty sexy', 'I had a latina girlfriend', 'if I had a latina girlfriend I would wreck her', 'puertoricans are not too bad but dominicans really get on my nerves, mexicans are ok'];
-let byes = ['goodbye', 'good night', 'bye', 'cya', 'cya later', 'adios', 'ttyl', 'night'];
+let byes = ['goodbye', 'good night', 'bye', 'cya', 'cya later', 'adios', 'ttyl', 'night','gn'];
 let suffixes = ['guys', 'all', 'folks', 'everybody', 'everyone', 'there'];
+let someshit = ['Is anyone else here just totally completely fucking miserable?','I am numb when I wake up in the morning and when I go to bed at night,','I feel dead inside, I feel nothing','I remember always having a feeling of pretty low chronic depression since I was around 13 (now 24) but it hit nuclear levels in summer of 2020, literally closest I have ever been to sucide and super close to throwing myself off a high rise building I had access to.','I feel like self medicating with something hardcore','Can anyone else chime in here and tell me what the fuck is going on and how to fix it?','Eat ze bugs','Is there a point to this sad story?','No one cares. Kys','Nah, I\'m good.','I just collapsed on the floor a few minutes ago.','I went downstairs to the basement where she last was and I smelled the bed where she layed naked just a week ago.','Her candle still here.','A piece of gum left on the bed post.','I went up stairs after screaming out of anger and regret with the bottle of Vodka I had got for her. ','I\'m a total fucking mess. I hate women.','no idea how to fix this, i basically feel the same','start doing 5-10 pushups a day','Read at least 2 hours every day','Go for at least a one hour long walk','Get at least 15 minutes of sun','Work out to a sweat at least once per day','Eat three healthy meals, with two snacks inbetween (snacks as in fruit, nuts, maybe a sandwich)','Start playing an instrument and stick to it','Get a hobby, such as a sport, maybe martial arts, maybe painting, sculpting, 3d modelling - whatever','Start your own side business, ideas: 3d printing, a snack stand, pottery, web dev, crypto mining - whatever','Enroll in a course and learn something new, perhaps a new language','I have little motivation and get little pleasure out of life.','If you do all these things and stick to it, you VILL be happy in less than 6 months.','Endure or die faggot.','Godspeed, space cowboy','I have a pessimistic outlook on human affairs','Why be depressed now when things are just getting interesting?','You\'re probably spending way too much time on the internet and not getting enough sleep (or too much sleep).','motivation comes from within','Stop feeling sorry for yourself','invest in your physical health (eating better, physical exercise, etc.) and find a purpose instead of bitching that you have no purpose.','There\'s a million wonderful things to experience on this planet and you\'ve only got like 50 years left to experience the ones you want the most.','Stop bitching about the price of these seats. They\'re front row to the end of the world.','what\'s your diet?','What pains you anon?','You need to talk about it, confront it and deal with it.','It\'s the only way you can get better.','I was feeling similarly this past fall and into winter, Christmas and New Years was a bad time for me.','I would recommend some mushrooms maybe, those are always good for shaking up your preconceptions and mental habits and usually remind you of the magical beauty of the natural world and your connection to it.','Vitamin D deficiency.','I don\'t know, I\'m in a similar boat but things have felt a little better lately.','Something that always makes me feel good is cleaning/organizing my domicile and keeping it that way','I\'m a big believer in your microcosm affecting your microcosm, and having a clean and energetically open living space is good for your mind','Good luck ','I feel your pain','I\'m just now starting to cope with the absence of my ex wife and not feeling like I want to die or get drunk about it','start going to the gym','Who the fuck has the motivation for all that after working 8 hours of a shitty wageslave job?','put your energy into making yourself a chad','fuck these people telling you to take drugs','it will change your life.','Having you tried cardio 3 times a week for one hour and eating a healthy balanced diet?','stop living with your parents, dumbass','You can do both.','Mushrooms made me quit cigarettes cold turkey and I haven\'t smoked them since.',' don\'t go heavy on psychedelics, a little dab will do','Would you rather wage to death, become based and free, or at least die trying?','Yes, and that is good.','i feel it to bro','I don\'t know what it is but seeing that the avaerage person is about 50 times dumber than I already gave them credit for hasn\'t helped','there are a lot of people out there with bad ideas in their head','many such cases ','Being happy is easy, it\'s just a simple chemical reaction. You can take drugs to always be happy.','Is that what you want?','I\'ve only ever come close to suicide once in my life, about 6 years ago','I took a walk around the neighborhood to think things over and the "what if I just died"','people who hate me would be happier if I was dead, why should I go out of my way to make that happen?','Take care of yourself anon. ','That statement will motivate someone for one day tops','life is nothing more than a treadmill. ','Start researching on finding purpose or meaning.','this place is a shithole of negativity.','I wake up at 4:00 to work out before a twelve hour shift six days a week.','The human potential is limitless, tampered only by our will.','I achieved a 500lb deadlift.','You might cry when it happens.','You\'re in a negative feedback loop and need to break the cycle by doing stuff that makes you happy.','what\'s your exercise regimen?','how\'s your sleep?','let\'s look at those things first','someone is going to convince you is da joos or something.','start lifting faggot','I miss when stuff came in glass bottles.','44, married with two kids.','start living as god intended','you are the one & only temple of god','I just don\'t give a fuck. Hahahah','Whoever invested their belief/hope in society or in the herd were always doomed','Psychedelics turns you into a beta faggot.','This guy gets it. ','All this shit is a fucking meme','I have hobbies,','I don\'t drink, I read','I bike 100+ miles a week','If you\'ve always been miserable nothing short of actual meds will help you. ','I eat right and I\'m still fucking miserable','those fucking faggots who are naturally attractive and charismatic tell incels to just be themselves...isn\'t that what they\'ve been doing all their fucking life and it hasn\'t really worked','Fuck you and your shit normie advice','people only give out adice that works for them but all that meme shit is not a one size fits all','I hope your family gets fucking killed in a car wreck if you have one.','same here anon but not that intense','hopefully nature comforts you',' there are cool people out there that would never pose any harm to you','I was basically a NEET because of covid and I became anti-social af','Living a life with comfort will make you depressed because then the little things in life will bring you down','I have no aspirations.','memeflaggots will always be ignored','I have no desire for relationships','I exist to watch the world burn. ','I do not enjoy the company of women. ','The only thing that brings a smile for my face is watching things go horribly wrong and making predictions about how things will go wrong and see them come to fruition','I would consider myself an environmentalist in that technology has enslaved us and a return to a low population planet with fewer people living higher quality lives is imperative.','The internet was a mistake. I should not be communicating here with you.','congrats bro','This is how the world ends.','I\'ve done these things.','I want nothing of this society anymore.','Eat good go for runs find good hobbies.','agreed','Depression is your body yelling you you\'re not living right','have you tried being less of a pussy?','I\'m a therapist.','go on a real adventure.','I\'ve been doing this shit for years','This','There is a depopulation agenda going on, and you were smart enough to avoid it. ','Darkness, imprisoning me','You don\'t create, you consume.','Do you think trauma is easy to rid yourself of?','You need to channel your anger and pain through art to feel any relief.','Get a little drum machine and synth and fuck with it on big speakers while getting hammered and see how you feel afterwards.','have you ever sat down and tried to, like, figure out, like, why you\'re miserable and do something about it','how about you do something with yourself ','Dude you are depressed because your life sucks','You shouldn\'t have taken the vaccine, fag.','What you need to is work on that and keep at it.','in a nebulous way that is the solution','You should try a dopamine fast','lmao. seek professional help','No devices, no food, no entertainment, no drugs, no alcohol, no fapping, no sex, no nothing for one whole day.','my head and chest cave in one side','my eyebrows sit in my eye sockets','my head is a weird shape and lumpy','people stare at me when i go out','people whisper under their breath at me I\'ve heard god damn quite a few time','people have told me I\'m the ugliest person they\'ve ever seen','even my own fucking family has said in roundabout ways I\'m ugly as shit','People don\'t even see me as a fucking human being and this has been proven to me countless times throughout my life.','biggest meme ever','Fuck it I\'ll give it a try ','Thank god I found a refuge among common men.','those who are poor like myself are going to die miserably without even having sex in lifetime','Let\'s drink to i...wait I have some ganja. Let\'s smoke weed.','I think it\'s a phase we are all going through together right now','I think we have an ancestral memory and a collective consciousness we all share together.','I\'m a huge believer in Jungian theory especially in his later years.','everyone I\'ve spoken to is miserable or more miserable than usual','Try sitting down and making a statement about all the things that make you feel down or numb','What are some goals or things you think would make you happy? ','Think long term then working backward break it into small steps and the do one of the small steps. ','All it takes is one to get the ball rolling.','I unironically feel exactly the same way. ','I\'m sure you can bag fat American women, it can\'t be that bad.','my appearance is suboptimal','your intellgence and wit make you a great man','men\'s attractiveness is not dictated by good looks','Get yourself together and use the attention you\'re getting productively.','I\'m in rural Alabama living on 30 acres in the hills','World is fucked but whatever','I\'m extremely happy right now','Find a relationship with God my man. It will change your life','Did some bad events occurred?','maybe there is something out there for you who knows','It sounds to me as though you are the most free of any of us.','There\'s nothing wrong with you','When is covid hysteria going to fucking end?','stop jackin off for a week','It doesn\'t suit you, brother','Ok, I\'ll bite','Jesus can help amigo. Just ask him.','Alcohol, nicotine, cannabis and what ever else might feel good, but its really not worth the money, time and energy.','Eat less sugar, sodas ,and sweets.  its just really empty calories and temporary bliss.','I\'m getting married to a gorgeous trad wife God willing','Read the Qur\'an and accept Islam bro',' I\'m involved and feel respected by the community','I get to transform alhamdulillah.','Take the greenpill bro','Escape the materialist mushbrained hell you\'ve been sold','The world is designed to be difficult ','are you retarded?','We\'re living in a mad world. ','you never know how good you had it till it\'s gone','The key is to distance yourself and literally focus on a few things that actually matter to you.','all I do is browse IRC and go to the gym. Nothing else.','I can\'t be bothered to do work, or learn anything new or do anything fun','I partially think I use this place because it makes me feel less lonely.','I love you all frens, you guys help me feel less alone.','That shits awesome.','Have you experimented with slaughtering your enemies?','Looks like one of your siema heniu\'s.','I second this','For me it was late November 2020. That\'s when I began going insane','Glad you found community my friend.','Sounds like you have nothing left to lose. ','I\'m clinically depressed and I dread four days out of five at my job.','you might be right.','This is great news! ','nothing holding you back from whatever cockamamie pie in the sky dream you might have.','Seriously, what\'s the worst that could happen? ','You become homeless and die of exposure','Sounds like a step up to me','Rob that kike owned jewelry store.','the only way to go is up!','whatever strikes your fancy','If you have friends and loved ones on IRC, bring up your concerns with them.','Jesus loves you. Take refuge in him.','approach therapy from a licensed professional','Asking for help is one of the strongest things you can do','You could join a Discord community to find others that share a hobby that you do','Drinking lots of water and eating less junk are good for your body, and can improve your mood and libido quite a lot.','you could start taking fish oil.','one never truly gets over their depression, so we do what we can to live a happy life','I hope you get well soon, bro.','IS THIS REEEAAAALLL!!!!!?????','I felt this way before I joined the Orthodox Church','What\'s the purpose?','Go lift weights','Right back at you brother. It\'s gonna get wild. I just pray our people finally wake up.','Stfu. Stop being a bitch. Punch a nazi.','Don\'t be a bitch. Ypu literally live in THE first world country and none of your problems matter.','i feel okay this evening, but generally i just can\'t take it anymore.','people walk away mid sentence when I\'m talking',' Sleep is one thing that\'s always escaped me, no matter how much I excersice, drink (when I did), take or whatever other stuff I\'ve tried I still wake up multiple times and can never actually get comfortable.','It would be nice to have someone to talk to but my entire life i\'ve never really had anyone either online or off so I have zero conversation skills. ','I\'m going to start doing masturbation attacks on random women','Please consider abstaining from porn.','kill yourself, you spineless fucking coward.','Hit the gym bro. Start a linear progression program like Starting Strength or Stronglifts 5x5. Seriously, the gym saved my life.','you opinion does not matter here ','What purpose is served by saying things like this?','You must be 18+ to post in this chat','stop trying to bait him into getting abused','I\'m fucking miserable and so stressed my stomach perpetually burns and I\'m consistently having nightmares.',' im not here playing the mister good person or whatever emotional type of leeching','want to be friends?','What you are feeling is normal and rational. ','I feel that way now ','I have nothing else to say','Fuck I hate these Reddit posts','wash your penis','You should get your testosterone checked.','I get miserable if I think about the things I missed out on when I was still in high school. ','Cringe','I\'m 27 and have never had any interaction with women outside of family or work.','Because of being awkward and being raised by 1950s boomers, I was behind all the time socially.','I get told I "look angry" all the time by male and female coworkers.','That\'s the main thing that bothers me, that I can\'t get a woman to like me or even be friendly towards me. It hurts. Even my grandfather is like: Son, just pay a woman and get it out of your system.','my father thought I was a faggot because he never sees me looking at women in public.','I have an appointment with the psychiatrist in a month, maybe pills will make me normal.','I really, truly do fucking hate myself. The self loathing runs deep.','About 2 weeks ago I developed 2 herniated vertebral discs and go for my pre-op consultation in a week... and I almost don\'t mind it because it\'s the only real thing I have felt in years','this shit is extremely entertaining','It is simple when you realize the majority of people are absolute retards.','My main problem is being poor, i can\'t made the back studies the doctor tell me to do so scoliosis its getting worse everyday, i can\'t pay my swimming classes anymore, i can\'t find a job, i have two years left to end the university and see if my life worth something','Women are property. They are stupid and need guidance and dick.']
+let botgeneralreply = ['cry harder faggot','i wanna die','always has been','first I was almost thrown in prison. Then jail. Now I\'m on probation and homeless. And almost died of covid. Satan\'s been scoring home runs.','no joke though, finding a job in a red state is fucking easy.','my face may not show it but i am in insufferable pain.','you are delusional we live in hell.','I am getting killed by Calculus 2. I need 60% to pass and my average is 62%. Wish me luck','I\'m late 30\'s and don\'t associate with druggie types.','you have nothing to lose and everything to gain','every year has gotten worse so far, might be homeless and die this winter','I\'m unemployed living with my parents','grow up and stop listening to kike science you fucking nigger child','I did nothing but watch youtube and read 4chan/Reddit threads I have a real issue','I\'m running out of reasons to not commit suicide','jews and jewnesses are cute','Peak reddit. Coming up with a bullshit explanation that allows you to paint people you don\'t like as evil, stupid and incompetent. It\'s always like that. Underhanded insults. Nothing else. And that nets you a thousand upvotes and a bag of reddit shekels. It\'s so incredibly tiresome to observe.','Why are black people so easily upset?','I\'m thinking of sucking my own dick but it smeels like fish','Imagine being upset over a word. Stupid niggers. Either we can say all words or no words','I\'ve been here for so long that you guys became the ambient air temperature and I’m just so fuckin BASED I couldn’t keep being racist','We are building society on a delusion.','a black man\'s lips are the size of Michelin tires.','The day someone invents a virus that transfers through reddit comments and kills the writer of said comment is the day the world starts getting better','White privilege doesn\'t exist','Racism doesn\'t exist','i wish a motherfucker would!','oh no he didn’t!','you bet’ not do dat','what i\'m about to say is about to be some bullshit','H-h-ey watch it pal i belong to the tribe','Niggers carry the homo erectus genes you fucking nigger loving science denying leftist kike retard','Redditspacing retard','kill yourself','I’m going to get a VPN just to fuck with you','to long didn\'t read.','just lower your standards','I’m not racist','hii','no','you have something to say to me say it to my face','i think yes','yes','fuckin A','maybe','nevermind','I do not understand','what do you mean?','can you help me?','I do not need a bag','how can I help you?','I\'m just about to do it','something\'s not right here','I agree','I\'ve heard this before','this is an old story','so what','i dont really care','you\'re not really adding anything to the conversation','where are you from?','what do you do?','what do you like to do in your free time?','do you have facebook?','thanks','thank you','I really appreciate that','excuse me','I am sorry','what do you think?','that sounds great','some','I\'ve never actually consired that','are you serious?','sounds good','are you having a bad day or something?','if you don\'t like it here you could just leave ok?','ohh maaa gaaaa','turn up','basic','ratchet','fleek','I have a collection of rare Pepes','fuckboy','yassss','yas queen','fa ril?','fa ril dough?','hayell naww','bogus','girrrrrlllll','sheeeeit','bout that life','yessuh','word','i coom on the haters','the fuck did you just say?','just shut up','you\'re boring','i dont care','thats interesting','oh yeah?','Just been for a couple mile run. Went down the gym last night and lifted some weights. I\'m all fitness pilled now, gonna shed my body fat and get down to a fighting weight.Reject the black pill. Get fit or get fucked.','so what','actually no','I\'m gay','cuckolding is the thinker\'s fetish','I love to coom','I don\'t believe anything you\'re saying','wow','impressive','that\'s based','I\'m getting redpilled'];
 
-// let racerealism = ['Americans can’t stop talking about race and racism. Why? Because black people don’t do as well as white people.'
-// 									,'Black people are poorer, more likely to be in jail, they are fatter, more likely to have illegitimate children, and the black part of town is always the worst. There is only one official explanation for this. It’s the fault of white people.'
-// 									,'Sneed’s store was formerly called Chuck’s Feed and Seed'
-// 									,'Those of us who are not niggers will never experience that burning feeling that you, as a nigger, experience when someone who is not a nigger reminds you of what you are. We can understand it but we can never feel it.'
-// 									,'racial discrimination has been illegal for more than half a century.'
-// 									,'There are now built-in advantages for black people called affirmative action and diversity goals.'
-// 									,'niggers literally destroying every country on earth, literally hot war level crime rates, rapes and murders everywhere'
-// 									,'Niger is Latin for black'
-// 									,'Segregation is the way of the future.'
-// 									,'Peak reddit. Coming up with a bullshit explanation that allows you to paint people you don\'t like as evil, stupid and incompetent. It\'s always like that. Underhanded insults. Nothing else. And that nets you a thousand upvotes and a bag of reddit shekels. It\'s so incredibly tiresome to observe.'
-// 									,'Why are black people so easily upset?'
-// 									,'I\'m thinking of sucking my own dick but it smeels like fish'
-// 									,'Homo sapiens evolved around 300,000 years ago. 100,000 years ago, the Earth entered into a new ice age. When we came out of the ice age 12,000 years ago, instead of there being a singular human race (since everyone had to migrate to the equator to stay alive), we now had multiple races.'
-// 									,'racism isnt an action, its a reaction. you can ask someone to stop puking after eating rotten food, or stop screaming after they get hurt, but it makes you look a bit stupid.'
-// 									,'Imagine being upset over a word. Stupid niggers. Either we can say all words or no words'
-// 									,'Black people laterally hate being called Black'
-// 									,'I\'ve been here for so long that you guys became the ambient air temperature and I’m just so fuckin BASED I couldn’t keep being racist'
-// 									,'Critical Race Theory now says white people are oppressing black people whether we want to or not. It’s our nature.'
-// 									,'Are we unconsciously oppressing black people?'
-// 									,'Isn’t it plausible to ask whether, on average, the different races might not have the same abilities?'
-// 									,'Couldn’t it be that most of the time in America, people of all races rise and fall according to their abilities?'
-// 									,'At some level, almost everyone knows that races are different.'
-// 									,'At the Olympics blacks who come originally from West Africa will dominate the sprints, and blacks who come from East Africa will dominate the long distances. It’s been that way for at a long time.'
-// 									,'Blacks dominate professional basketball. They are 13 percent of the population but 81 percent of the players. Any given black man is 21 times more likely than a white man to be a pro basketball player. Is that a coincidence, or are they just better?'
-// 									,'It’s much more taboo to talk about race differences in intelligence, but the evidence for differences is overwhelming.'
-// 									,'there is no black country anywhere in the world – whether in Africa or in the Caribbean, like Haiti – that isn’t poor.'
-// 									,'Are all black countries, despite their very different histories, victims of racism in exactly the same way?'
-// 									,'Before Europeans or Arabs showed up in black Africa, no one there had invented the wheel or any kind of mechanical device or had domesticated an animal or figured out a calendar or built a two-story building.'
-// 									,'There is some debate as to whether any blacks even had a written language. Many ancient peoples – Chinese, Arabs, Greeks – encountered black Africans. Whey they wrote about it, they often said blacks were unintelligent. I have never read of anyone who marveled at their intelligence.'
-// 									,'There are 13,800 school districts in the United States. I don’t know of a single one that doesn’t fit the pattern on standardized tests: Black students get the worst grades. Hispanics do better than blacks. Whites do better than Hispanics. And Asians do best of all. '
-// 									,'people of different races have different abilities'
-// 									,'You may think tests of any kind – especially IQ tests – are racist, but specialists overwhelmingly agree that they are not.'
-// 									,'Tests accurately measure the intelligence of people of all races. You are basically born with a certain level of intelligence. '
-// 									,'Many people claim that blacks do badly in school and on tests because they are poor.'
-// 									,'Whites from families with incomes below $20,000 had a mean SAT test score that was 12 points higher than blacks whose families had incomes between $160,000 and $200,000.'
-// 									,'Whites from families that were not even making $20,000 outscored blacks from families making more than $160,000.'
-// 									,'The best estimates are that genes account for 50 to 80 percent of individual differences in IQ.'
-// 									,'It is fashionable to say there is no such thing as race, but Africans and non-Africans probably diverged from a common ancestor more than 100,000 years ago. Asians and whites probably diverged about 50,000 years ago.'
-// 									,'It would have been a miracle if the forces of evolution that produced striking physical differences had left the brain completely untouched.'
-// 									,'Someday, we will find the genes associated with intelligence, and I think the chances that they are equally distributed among the different races is zero.'
-// 									,'scientists are finding the genetic patterns associated with level of education, which is a good indirect indicator of intelligence. '
-// 									,'People with bigger brains tend to be smarter; there is a correlation between brain size and IQ of 0.3 to 0.4.'
-// 									,'African-descended people (Blacks) average cranial capacities of 1267 cm3, European-descended people (Whites) 1347 cm3, and East Asian-descended people (East Asians) 1364 cm3.” That is a black/Asian difference of 97 cubic cc, or about 6 cubic inches. Those 6 cubic inches aren’t just sitting there. They’re hard at work.'
-// 									,'brain size differences match intelligence: “Blacks average an IQ of 85, Whites 100, and East Asians 106.'
-// 									,'The races are not, on average, equal in intelligence, and genes almost certainly have a lot to do with it.'
-// 									,'There is powerful evidence that the races differ in other traits: agreeableness, diligence, and the ability to defer gratification – which means the ability to work and sacrifice now for future benefits. '
-// 									,'A lot of people don’t want the truth to be known.'
-// 									,'the truth appears to be that by and large “racism” doesn’t hold back blacks or Hispanics any more than “racism” pushes Asians ahead'
-// 									,'You just can’t expect people of all races to turn out the same.'
-// 									,'There are more blacks in jail because blacks commit more crime.'
-// 									,'We are building society on a delusion.'
-// 									,'our country is going crazy, looking for “systemic racism” and “institutional racism” that aren’t there'
-// 									,'This is a colossal waste of money and effort, and it wrongly blames and demonizes whites.'
-// 									,'If we are going to compete in the world economy, we have to promote talent, not count black and brown faces.'
-// 									,'if we’re going to have a society that even works minimally, blacks – and Hispanics – need to understand that society wants them to succeed. But it’s up to them to get ahead.'
-// 									,'more and more white people are fed up with taking the blame for black or Hispanic failure. They are angry.'
-// 									,'I’m not convinced a multi-racial society can even work in the long term'
-// 									,'a multi-racial society will crack up for sure if we refuse to accept basic facts about race.'
-// 									,'If you want to learn about race - just move into a black neighborhood. In just a few weeks, you\'ll qualify as an "expert". That is, if you\'re still alive or at least no longer in intensive care.'
-// 									,'a black man\'s lips are the size of Michelin tires.'
-// 									,'The day someone invents a virus that transfers through reddit comments and kills the writer of said comment is the day the world starts getting better'
-// 									,'A young man was following Him, wearing nothing but a linen sheet over his naked body; and they seized him. But he pulled free of the linen sheet and escaped naked.'
-// 									,'As a dog returns to its vomit, so a fool repeats his folly.'
-// 									,'Give beer to those who are perishing, wine to those who are in anguish.'
-// 									,'He said to Jacob, Let me eat some of that red stuff, because I’m exhausted.'
-// 									,'I wish those who unsettle you would castrate themselves!'
-// 									,'If a man has sex with an animal, he must be put to death, and the animal must be killed.'
-// 									,'If a man loudly blesses his neighbor early in the morning, it will be taken as a curse.'
-// 									,'If only you would be altogether silent! For you, that would be wisdom.'
-// 									,'It is better to live alone in the desert than with a crabby, complaining wife.'
-// 									,'No one whose testicles are crushed or whose penis is cut off shall be admitted to the assembly of the LORD.'
-// 									,'There is more hope for a fool than for someone who speaks without thinking.'
-// 									,'Thou shalt not boil a kid in its mother’s milk'
-// 									,'Yet she became more and more promiscuous as she recalled the days of her youth, when she was a prostitute in Egypt. There she lusted after her lovers, whose genitals were like those of donkeys and whose emission was like that of horses.'
-// 									,'You shall eat the flesh of your sons, and you shall eat the flesh of your daughters.'
-// 									,'White privilege doesn\'t exist'
-// 									,'Racism doesn\'t exist'
-// 									,'i wish a motherfucker would!'
-// 									,'oh no he didn’t!'
-// 									,'you bet’ not do dat'
-// 									,'what i\'m about to say is about to be some bullshit'
-// 									// ,'you got me fucked up'
-// 									// ,'you got me fucked up'
-// 									// ,'Word'
-// 									// ,'nig'
-// 									// ,'nig'
-// 									// ,'nig'
-// 									// ,'nig'
-// 									// ,'nig'
-// 									]
+var replies = [...someshit,...botgeneralreply];
+
 
 
 function getRandomInt(max) {
 	return Math.floor(Math.random() * max);
 }
 
-// function getRandomInt(min) {
-// 	return Math.floor(Math.random() * min);
-// }
 
-// bot.addListener('pm', function (from, message) {
-//     console.log(from + ' => ME: ' + message);
-// });
-
-// bot.addListener("notice", function(nick, to, text, message) {
-// 	// bot.say(to, ' notice');
-// 	console.log('notice', text);
-// });
-
-// bot.addListener("selfMessage", function(to, text) {
-// 	console.log('selfMessage',to, text);
-// });
-
-
-
-// bot.addListener("PRIVMSG", function(to, text) {
-// 	console.log('PRIVMSG message');
-// });
-
-// bot.addListener("ctcp-notice", function(to, text) {
-// 	console.log('PRIVMSG notice');
-// });
-
-// bot.addListener("ctcp-privmsg", function(to, text) {
-// 	console.log('PRIVMSG message');
-// });
-
-// bot.addListener('pm', function(nick, message) {
-//     console.log('Got private message from %s: %s', nick, message);
-// });
-
-// setInterval(bot.say(config.channels[0], + 'test'), 2000);
-
-// Listen for any message, say to him/her in the room
 bot.addListener("message", function(from, to, text, message) {
-
 
 	let chattermessage = text.toLowerCase()
 
@@ -217,15 +69,22 @@ bot.addListener("message", function(from, to, text, message) {
 		}, getRandomInt(10000));
 	}
 
+	if (chattermessage.includes(config.botName) && bothello.some(word => chattermessage.includes(word))) {
+		setTimeout(() => {
+			bot.say(to, from + ' ' + bothello[getRandomInt(bothello.length)]);
+		}, getRandomInt(10000));
+	}
+
 	if (greeting.includes(chattermessage) && getRandomInt(3) == 1) {
 		setTimeout(() => {
 			bot.say(to, greeting[getRandomInt(greeting.length)]);
 		}, getRandomInt(10000));
 	}
 
-	if (generalmessages.some(word => chattermessage.includes(word)) && getRandomInt(3) == 1) {
+	if (generalmessages.some(word => chattermessage.includes(word)) && getRandomInt(20) == 1) {
+		// console.log(replies.length)
 		setTimeout(() => {
-			bot.say(to, botgeneralreply[getRandomInt(botgeneralreply.length)]);
+			bot.say(to, replies[getRandomInt(replies.length)]);
 		}, getRandomInt(10000));
 	}
 
@@ -241,18 +100,11 @@ bot.addListener("message", function(from, to, text, message) {
 		}, getRandomInt(10000));
 	}
 
-	// if ( (message.args[1]).toLowerCase() == ('nigger')) {
-	// 	bot.say(to, 'Please dont say the N word, its racist');
-	// }
-	// if (chattermessage == ('dance')) {
-	// 	bot.say(to, '\u0001ACTION dances: :D\\-<\u0001')
-	// }
+
 	if (swear.some(word => chattermessage.includes(word)) && getRandomInt(3) == 1) {
 		bot.say(to, swearreply[getRandomInt(swearreply.length)]);
 	}
-	// if ( (chattermessage.includes('kek')) {
-	// 	bot.say(to, funny[getRandomInt(funny.length)] );
-	// }
+
 	if (funny.some(word => chattermessage.includes(word))) {
 		setTimeout(() => {
 			bot.say(to, funny[getRandomInt(funny.length)]);
@@ -276,49 +128,36 @@ bot.addListener("message", function(from, to, text, message) {
 
 });
 
-// const response = await fetch('http://feeds.washingtonpost.com/rss/politics', {
-// 		method: 'POST',
-// 		body: 'a=1'
-// 	});
-// const data = await response.text();
+bot.addListener('registered', function() {
+	console.log('im connected')
+	bot.send('/msg nickserv identify jelmeeirc');
+	bot.send('/msg HostServ ON')
+});
 
 bot.addListener('join', function(channel, who) {
-	// console.log('%s has joined %s', who, channel);
-	// setInterval( ()=>{ bot.say(channel, racerealism[getRandomInt(racerealism.length)] )}, 1000000);
-	// initReader();
-
-	// feeder.on('new-item', (item) => {
-	// 	bot.say(item);
-	// });
-	
-
-
-	// console.log(data);
 
 	setTimeout(() => {
 		if (who == 'catatafishe') {
-			bot.say(channel, who + ' the wise mod has appeared');
-		} else if (who == 'fobby') {
-			bot.say(channel, who + ' fobby lobby');
-
+			bot.say(channel,' Hi');
 		} else if (who == 'IRSSucks') {
 			bot.say(channel, who + ' IRCSucks has arrived');
 		} else if (who.includes('konrad')) {
 			bot.say(channel, who + ' you are rad');
-		} else if (who.includes('tromto')) {
-			bot.say(channel, who + ' has entered the room, all rise');
 		} else if (who.includes('wolowolo')) {
-			bot.say(channel, who + ' hi wolowolo, did you come to spam again?');
+			bot.say(channel, ' hi wolowolo, did you come to spam again?');
 		} else if (who.includes(config.botName)) {
 			if (getRandomInt(3) == 1) {
 
 				bot.say(channel, 'hi ' + suffixes[getRandomInt(suffixes.length)]);
+				bot.say('/msg HostServ ON');
 			} else {
 				bot.say(channel, 'hi')
 			}
 
 		} else if (getRandomInt(3) == 1) {
 			bot.say(channel, who + ' hi');
+			bot.say(channel,'/msg nickserv identify jelmeeirc');
+			bot.say(channel,'/msg HostServ ON');
 		}
 
 
